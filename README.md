@@ -1,4 +1,3 @@
-markdown
 # Cloud-Native SIEM & EDR Detection Engineering
 
 ## Project Overview
@@ -48,3 +47,11 @@ Windows 11 (Victim Endpoint + Sysmon)
 - Wrote and tested 4 custom detection rules
 - Tuned false positives with documented before/after metrics
 - Built SOC dashboard with MITRE ATT&CK visualization
+
+
+
+👤 **Author**
+
+**Samuel M. Ntuen**
+
+LinkedIn: *https://www.linkedin.com/in/samuelntuen/*
