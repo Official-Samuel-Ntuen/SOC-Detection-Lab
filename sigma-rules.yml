@@ -1,0 +1,106 @@
+# Custom Sigma Rules
+# Author: Samuel M. Ntuen
+# Date: August 2026
+# Environment: Wazuh 4.9.2
+
+---
+title: Suspicious PowerShell Execution
+id: 100001
+status: experimental
+description: Detects suspicious PowerShell execution with common attacker flags
+author: Your Name
+date: 2026/08/28
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection:
+    Image|endswith: '\powershell.exe'
+    CommandLine|contains:
+      - 'encodedcommand'
+      - 'bypass'
+      - 'hidden'
+      - 'downloadstring'
+      - 'iex'
+      - 'invoke-expression'
+  condition: selection
+falsepositives:
+  - Legitimate admin scripts
+  - Software deployment tools
+level: high
+tags:
+  - attack.execution
+  - attack.t1059.001
+
+---
+title: Brute Force Authentication Detection
+id: 100002
+status: experimental
+description: Detects multiple failed logon attempts indicating brute force
+author: Your Name
+date: 2026/08/28
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4625
+  timeframe: 60s
+  condition: selection | count() > 5
+falsepositives:
+  - Legitimate users forgetting passwords
+  - Service account misconfigurations
+level: high
+tags:
+  - attack.credential_access
+  - attack.t1110
+
+---
+title: LSASS Memory Access - Credential Dumping
+id: 100003
+status: experimental
+description: Detects process access to lsass.exe consistent with credential dumping
+author: Your Name
+date: 2026/08/28
+logsource:
+  category: process_access
+  product: windows
+detection:
+  selection:
+    TargetImage|endswith: '\lsass.exe'
+    GrantedAccess:
+      - '0x1010'
+      - '0x1410'
+      - '0x1438'
+      - '0x143a'
+  condition: selection
+falsepositives:
+  - Legitimate security tools
+  - AV/EDR solutions
+level: critical
+tags:
+  - attack.credential_access
+  - attack.t1003.001
+
+---
+title: Scheduled Task Creation - Persistence
+id: 100004
+status: experimental
+description: Detects scheduled task creation used for persistence
+author: Your Name
+date: 2026/08/28
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection:
+    Image|endswith: '\schtasks.exe'
+    CommandLine|contains: '/create'
+  condition: selection
+falsepositives:
+  - Legitimate software installations
+  - IT admin scheduled tasks
+level: medium
+tags:
+  - attack.persistence
+  - attack.t1053.005
