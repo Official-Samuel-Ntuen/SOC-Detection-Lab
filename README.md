@@ -113,4 +113,4 @@ Four custom Wazuh rules written and tested:
 **Samuel M. Ntuen**
 
 Cybersecurity | Blue Team | SOC Engineering  
-[LinkedIn](https://linkedin.com/in/samuel-ntuen) | [GitHub](https://github.com/Official-Samuel-Ntuen)
+[LinkedIn](https://https://www.linkedin.com/in/samuelntuen/)] | [GitHub](https://github.com/Official-Samuel-Ntuen)
