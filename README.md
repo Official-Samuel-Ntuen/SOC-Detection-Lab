@@ -3,6 +3,7 @@
 
 ## 1. Executive Summary
 This project demonstrates the design and implementation of a cloud-native Security Operations Center (SOC) using Wazuh SIEM/EDR. Two live endpoints (Kali Linux and Windows 11) were enrolled, and 6 real-world MITRE ATT&CK techniques were simulated using Atomic Red Team. Four custom detection rules were written and tested, achieving an 18.7% false positive reduction through targeted rule tuning. This project proves practical capability in threat detection, log ingestion, and SOC engineering relevant to enterprise security operations.
+
 ---
 
 ## 2. Architecture
